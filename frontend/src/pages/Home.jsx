@@ -1,23 +1,21 @@
-import React from "react";
+// src/pages/Home.jsx
+import { useState } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import HeroSlider from "../components/HeroSlider";
+import AuthModal from "../components/AuthModal";
 
-const Home = () => {
+function Home() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <div className="bg-[#1A1A40] text-white min-h-screen">
-      {/* Top SCET Nexus Branding Header */}
+    <>
       <Header />
-
-      {/* Navigation Bar with Home / About / Login */}
-      <Navbar />
-
-      {/* Hero Section with Typing Text & Background Slider */}
+      <Navbar onLoginClick={() => setShowModal(true)} />
+      {showModal && <AuthModal onClose={() => setShowModal(false)} />}
       <HeroSlider />
-
-      {/* You can add more sections below if needed (like Testimonials, Info, etc.) */}
-    </div>
+    </>
   );
-};
+}
 
 export default Home;
